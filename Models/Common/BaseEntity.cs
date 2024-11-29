@@ -1,6 +1,11 @@
+using System.Text.Json.Serialization;
+
 public abstract class BaseEntity
 {
-    public int id { get; set; }
-    public DateTime created_at = DateTime.UtcNow;
-    public DateTime updated_at = DateTime.UtcNow;
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+    [JsonPropertyName("created_at")]
+    public DateTime CreatedAt = DateTime.UtcNow;
+    [JsonPropertyName("updated_at")]
+    public DateTime UpdatedAt = DateTime.UtcNow;
 }
