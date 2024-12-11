@@ -3,7 +3,6 @@
 - Khadija Arkhouch
 - Sara Mokadem
 - Hasan cakir
-- Valdier dos Santos
 
 # Docker Set-Up
 ## Prerequiste
