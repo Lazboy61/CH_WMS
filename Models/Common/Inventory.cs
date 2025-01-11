@@ -24,3 +24,4 @@ public class InventoryTemplate : BaseEntity
     public int total_allocated { get; set; }
     public int total_available { get; set; }
 }
+
