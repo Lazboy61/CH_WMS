@@ -1,10 +1,12 @@
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();  // Add this line to register controllers
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -25,15 +27,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using (var scope = app.Services.CreateScope())
 {
-    Console.WriteLine("enter in yes to load the jsons");
-    string answer = Console.ReadLine();
-
-    if (answer == "yes")
-    {
         var context = scope.ServiceProvider.GetRequiredService<ModelContext>();
 
         string jsonClient = File.ReadAllText("data/clients.json");
@@ -43,7 +44,7 @@ using (var scope = app.Services.CreateScope())
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         string jsonItemLines= File.ReadAllText("data/item_lines.json");                                           
         List<ItemLine> ItemLines = JsonSerializer.Deserialize<List<ItemLine>>(jsonItemLines);
-        List<ItemLine> newItemLines = [];
+        List<ItemLine> newItemLines = new List<ItemLine>();
         foreach (var item in ItemLines)
         {
             newItemLines.Add(new ItemLine{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
@@ -52,7 +53,7 @@ using (var scope = app.Services.CreateScope())
 
         string jsonItemGroups= File.ReadAllText("data/item_groups.json");                                           
         List<ItemGroup> ItemGroups = JsonSerializer.Deserialize<List<ItemGroup>>(jsonItemGroups);    
-        List<ItemGroup> newItemGroup = [];
+        List<ItemGroup> newItemGroup = new List<ItemGroup>();
         foreach (var item in ItemGroups)
         {
             newItemGroup.Add(new ItemGroup{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
@@ -61,7 +62,7 @@ using (var scope = app.Services.CreateScope())
 
         string jsonItemTypes= File.ReadAllText("data/item_types.json");                                           
         List<ItemType> ItemTypes = JsonSerializer.Deserialize<List<ItemType>>(jsonItemTypes);    
-        List<ItemType> newItemType = [];
+        List<ItemType> newItemType = new List<ItemType>();
         foreach (var item in ItemTypes)
         {
             newItemType.Add(new ItemType{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
@@ -74,36 +75,34 @@ using (var scope = app.Services.CreateScope())
         context.Suppliers.AddRange(Suppliers);
 
 
-        context.SaveChanges();    // succes
+       // context.SaveChanges();    // succes
         // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         string jsonItem = File.ReadAllText("data/items.json");
         List<Item> items = JsonSerializer.Deserialize<List<Item>>(jsonItem);
         context.Items.AddRange(items); // succes
-        context.SaveChanges();    // succes
+       //context.SaveChanges();    // succes
 
 
 
         string jsonWarehouse = File.ReadAllText("data/warehouses.json");
         List<Warehouse> Warehouses = JsonSerializer.Deserialize<List<Warehouse>>(jsonWarehouse);
         context.Warehouses.AddRange(Warehouses); // succes
-        context.SaveChanges();
-
+        //context.SaveChanges();
 
         string jsonLocation = File.ReadAllText("data/locations.json");
         List<Location> locations = JsonSerializer.Deserialize<List<Location>>(jsonLocation);
         context.Locations.AddRange(locations); // succes
 
-        context.SaveChanges();
-
+        //context.SaveChanges();
 
         string jsonInventory = File.ReadAllText("data/inventories.json");
         List<InventoryTemplate> InventoriesTemplate = JsonSerializer.Deserialize<List<InventoryTemplate>>(jsonInventory);
-        List<Inventory> inventories = [];
+        List<Inventory> inventories = new List<Inventory>();
         foreach (var inventory in InventoriesTemplate)
         {
             List<int> ids = inventory.locations;
-            List<Location> locationsholder = [];
+            List<Location> locationsholder = new List<Location>();
 
             foreach (var id in ids)
             {
@@ -125,22 +124,14 @@ using (var scope = app.Services.CreateScope())
             inventories.Add(NewInventory);
         }
 
-
-
         context.Inventorys.AddRange(inventories); // success
-        context.SaveChanges();
-
-
+        //context.SaveChanges();
 
         string jsonShipment = File.ReadAllText("data/shipments.json");
 
         List<Shipment> Shipments = JsonSerializer.Deserialize<List<Shipment>>(jsonShipment);
         context.Shipments.AddRange(Shipments);
-        context.SaveChanges();
-
-
-
-
+        //context.SaveChanges();
 
         string jsonOrder = File.ReadAllText("data/orders.json");
         List<Order> Orders = JsonSerializer.Deserialize<List<Order>>(jsonOrder);
@@ -173,20 +164,16 @@ using (var scope = app.Services.CreateScope())
         }
         context.Orders.AddRange(newOrders.Take(6858)); //success
 
-        context.SaveChanges();
-
-
-
+        //context.SaveChanges();
 
         string jsonTransfer = File.ReadAllText("data/transfers.json");
         List<Transfer> Transfers = JsonSerializer.Deserialize<List<Transfer>>(jsonTransfer);
         context.Transfers.AddRange(Transfers); // succes
 
-        context.SaveChanges();
-
+        //context.SaveChanges();
 
     }
-}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.Run();
@@ -218,4 +205,3 @@ app.Run();
 //     {
 //         System.Console.WriteLine(item.Title);
 //     }
-
