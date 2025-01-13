@@ -1,19 +1,21 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class OrderItem 
+
+public class OrderItem
 {
     [Key]
-    public int id {get;set;}
+    public int id { get; set; }
 
-    [JsonPropertyName("item_id")]  // Ensures the JSON property name maps correctly to C# property
+    [JsonPropertyName("item_id")]
     public string order_item_id { get; set; }
+
     public int amount { get; set; }
+
+    [ForeignKey("Order")]
     public int OrderId { get; set; }
 
-
-
+    [JsonIgnore] // Optioneel: voorkomt serialisatie naar JSON
+    public Order? Order { get; set; }
 }
-
-// BaseEntity includes create and update at while the ERD model doesnt. include or not?
-// Stem voor nee - valdier
