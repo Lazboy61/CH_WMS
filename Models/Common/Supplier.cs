@@ -1,6 +1,8 @@
 public class Supplier : BaseEntity
 {
+
     public string code { get; set; }
+
     public string name { get; set; }
     public string address { get; set; }
     public string address_extra { get; set; }
