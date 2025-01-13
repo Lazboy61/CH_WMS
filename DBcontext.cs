@@ -32,11 +32,9 @@ public class ModelContext : DbContext
 
 
     public ModelContext(DbContextOptions<ModelContext> options) : base(options) { }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        DbContextOptionsBuilder dbContextOptionsBuilder = optionsBuilder.UseNpgsql("Host=postgres;Database=cargohub;Username=postgres;Password=postgres;");
- 
-    }
+
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         

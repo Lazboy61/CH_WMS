@@ -1,12 +1,13 @@
-
 services:
   postgres:
     image: postgres
     command: -c shared_buffers=256MB -c max_connections=200
     ports:
-      - 5432:5432
+      - '8080:5432'
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: "admin@ad.min"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: cargohub
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
