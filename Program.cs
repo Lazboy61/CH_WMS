@@ -9,6 +9,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+// voeg CORS toee
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
@@ -22,11 +33,19 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 /////////////////////////////////////////////////////
 builder.Services.AddDbContext<ModelContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DBConnection");
+    Console.WriteLine($"Using connection string: {connectionString}");
+    options.UseNpgsql(connectionString)
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine); // Add logging
+});
 
-
+// postgres DB
 
 var app = builder.Build();
+
+//app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,7 +55,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use CORS
+app.UseCors();
+
 app.MapControllers();
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if (args.Contains("--load-json"))
 {
@@ -50,47 +75,46 @@ public partial class Program
 {
     public static void LoadJsonData(WebApplication app)
     {
-        using (var scope = app.Services.CreateScope()) // Zorgt ervoor dat scope correct is gedefinieerd
+        using (var scope = app.Services.CreateScope())
         {
-            var context = scope.ServiceProvider.GetRequiredService<ModelContext>();
-
             Console.WriteLine("enter in yes to load the jsons");
             string answer = Console.ReadLine();
 
             if (answer == "yes")
             {
-                // JSON-data laden en verwerken
+                var context = scope.ServiceProvider.GetRequiredService<ModelContext>();
+
                 string jsonClient = File.ReadAllText("data/clients.json");
                 List<Client> clients = JsonSerializer.Deserialize<List<Client>>(jsonClient);
-                context.Clients.AddRange(clients);
-                context.SaveChanges();
+                context.Clients.AddRange(clients); // succes
+
                 // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-                string jsonItemLines = File.ReadAllText("data/item_lines.json");
+                string jsonItemLines= File.ReadAllText("data/item_lines.json");                                           
                 List<ItemLine> ItemLines = JsonSerializer.Deserialize<List<ItemLine>>(jsonItemLines);
                 List<ItemLine> newItemLines = [];
                 foreach (var item in ItemLines)
                 {
-                    newItemLines.Add(new ItemLine { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
-                }
+                    newItemLines.Add(new ItemLine{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
+                } 
                 context.ItemLines.AddRange(newItemLines);
 
-                string jsonItemGroups = File.ReadAllText("data/item_groups.json");
-                List<ItemGroup> ItemGroups = JsonSerializer.Deserialize<List<ItemGroup>>(jsonItemGroups);
+                string jsonItemGroups= File.ReadAllText("data/item_groups.json");                                           
+                List<ItemGroup> ItemGroups = JsonSerializer.Deserialize<List<ItemGroup>>(jsonItemGroups);    
                 List<ItemGroup> newItemGroup = [];
                 foreach (var item in ItemGroups)
                 {
-                    newItemGroup.Add(new ItemGroup { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
-                }
+                    newItemGroup.Add(new ItemGroup{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
+                } 
                 context.ItemGroups.AddRange(newItemGroup);
 
-                string jsonItemTypes = File.ReadAllText("data/item_types.json");
-                List<ItemType> ItemTypes = JsonSerializer.Deserialize<List<ItemType>>(jsonItemTypes);
+                string jsonItemTypes= File.ReadAllText("data/item_types.json");                                           
+                List<ItemType> ItemTypes = JsonSerializer.Deserialize<List<ItemType>>(jsonItemTypes);    
                 List<ItemType> newItemType = [];
                 foreach (var item in ItemTypes)
                 {
-                    newItemType.Add(new ItemType { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
-                }
-                context.ItemTypes.AddRange(newItemType);
+                    newItemType.Add(new ItemType{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
+                } 
+                context.ItemTypes.AddRange(newItemType);  
 
 
                 string jsonSuppliers = File.ReadAllText("data/suppliers.json");
@@ -98,13 +122,13 @@ public partial class Program
                 context.Suppliers.AddRange(Suppliers);
 
 
-                context.SaveChanges();    // succes
-                                          // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //context.SaveChanges();    // succes
+                // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 string jsonItem = File.ReadAllText("data/items.json");
                 List<Item> items = JsonSerializer.Deserialize<List<Item>>(jsonItem);
                 context.Items.AddRange(items); // succes
-                context.SaveChanges();    // succes
+                //context.SaveChanges();    // succes
 
 
 
@@ -118,7 +142,7 @@ public partial class Program
                 List<Location> locations = JsonSerializer.Deserialize<List<Location>>(jsonLocation);
                 context.Locations.AddRange(locations); // succes
 
-                context.SaveChanges();
+                //context.SaveChanges();
 
 
                 string jsonInventory = File.ReadAllText("data/inventories.json");
@@ -152,7 +176,7 @@ public partial class Program
 
 
                 context.Inventorys.AddRange(inventories); // success
-                context.SaveChanges();
+                //context.SaveChanges();
 
 
 
@@ -160,52 +184,45 @@ public partial class Program
 
                 List<Shipment> Shipments = JsonSerializer.Deserialize<List<Shipment>>(jsonShipment);
                 context.Shipments.AddRange(Shipments);
-                context.SaveChanges();
+                //context.SaveChanges();
 
 
 
 
-                // string jsonOrder = File.ReadAllText("data/orders.json");
-                // List<Order> Orders = JsonSerializer.Deserialize<List<Order>>(jsonOrder);
-                // List<Order> newOrders = new List<Order>();
 
-                // foreach (var item in Orders)
-                // {
-                //     var newOrder = new Order
-                //     {
-                //         id = 0, // ID wordt automatisch gegenereerd
-                //         bill_to = item.bill_to,
-                //         source_id = item.source_id,
-                //         order_date = item.order_date,
-                //         request_date = item.request_date,
-                //         reference = item.reference,
-                //         reference_extra = item.reference_extra,
-                //         order_status = item.order_status,
-                //         notes = item.notes,
-                //         shipping_notes = item.shipping_notes,
-                //         picking_note = item.picking_note,
-                //         warehouse_id = item.warehouse_id,
-                //         ship_to = item.ship_to,
-                //         shipment_id = item.shipment_id,
-                //         total_amount = item.total_amount,
-                //         total_discount = item.total_discount,
-                //         total_tax = item.total_tax,
-                //         total_surcharge = item.total_surcharge,
-                //         items = item.items.Select(i => new OrderItem
-                //         {
-                //             order_item_id = i.item_id, // Correcte mapping van JSON
-                //             amount = i.amount,
-                //             OrderId = 0 // Wordt ingesteld door de database
-                //         }).ToList()
+                string jsonOrder = File.ReadAllText("data/orders.json");
+                List<Order> Orders = JsonSerializer.Deserialize<List<Order>>(jsonOrder);
+                List<Order> newOrders = new List<Order>();
+                foreach (var item in Orders)  // Loop through the original Orders list, not newOrders
+                {
+                    newOrders.Add(new Order
+                    {
+                        id = 0,               // Set ID as 0
+                        bill_to = item.bill_to,  // Set bill_to from each item in Orders
+                        source_id = item.source_id,
+                        order_date = item.order_date,
+                        request_date = item.request_date,
+                        reference = item.reference,
+                        reference_extra = item.reference_extra,
+                        order_status = item.order_status,
+                        notes = item.notes,
+                        shipping_notes = item.shipping_notes,
+                        picking_note = item.picking_note,
+                        warehouse_id = item.warehouse_id,
+                        ship_to = item.ship_to,
+                        shipment_id = item.shipment_id,
+                        total_amount = item.total_amount,
+                        total_discount = item.total_discount,
+                        total_tax = item.total_tax,
+                        total_surcharge = item.total_surcharge,
+                        items = new List<OrderItem>(item.items)  // Ensure items list is copied correctly
+                    });
+                    
+                }
+                context.Orders.AddRange(newOrders.Take(6858)); //success
 
+                //context.SaveChanges();
 
-                //     };
-
-                //     newOrders.Add(newOrder);
-                // }
-
-                // context.Orders.AddRange(newOrders.Take(6858)); // Voeg de nieuwe orders toe
-                // context.SaveChanges();
 
 
 
@@ -213,7 +230,7 @@ public partial class Program
                 List<Transfer> Transfers = JsonSerializer.Deserialize<List<Transfer>>(jsonTransfer);
                 context.Transfers.AddRange(Transfers); // succes
 
-                context.SaveChanges();
+                //context.SaveChanges();
 
 
             }
@@ -249,4 +266,3 @@ public partial class Program
 //     {
 //         System.Console.WriteLine(item.Title);
 //     }
-

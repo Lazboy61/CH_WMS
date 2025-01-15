@@ -33,8 +33,11 @@ public class ModelContext : DbContext
 
     public ModelContext(DbContextOptions<ModelContext> options) : base(options) { }
 
+    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
         // ITEM // succes
         modelBuilder.Entity<Item>()
             .HasKey(i => i.uid);
