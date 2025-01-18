@@ -9,4 +9,5 @@ public class Client : BaseEntity
     public string contact_name { get; set; }
     public string contact_phone { get; set; }
     public string contact_email { get; set; }
+
 }

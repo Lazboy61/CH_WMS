@@ -41,32 +41,32 @@ using (var scope = app.Services.CreateScope())
         context.Clients.AddRange(clients); // succes
 
         // ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-        string jsonItemLines= File.ReadAllText("data/item_lines.json");                                           
+        string jsonItemLines = File.ReadAllText("data/item_lines.json");
         List<ItemLine> ItemLines = JsonSerializer.Deserialize<List<ItemLine>>(jsonItemLines);
         List<ItemLine> newItemLines = [];
         foreach (var item in ItemLines)
         {
-            newItemLines.Add(new ItemLine{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
-        } 
+            newItemLines.Add(new ItemLine { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
+        }
         context.ItemLines.AddRange(newItemLines);
 
-        string jsonItemGroups= File.ReadAllText("data/item_groups.json");                                           
-        List<ItemGroup> ItemGroups = JsonSerializer.Deserialize<List<ItemGroup>>(jsonItemGroups);    
+        string jsonItemGroups = File.ReadAllText("data/item_groups.json");
+        List<ItemGroup> ItemGroups = JsonSerializer.Deserialize<List<ItemGroup>>(jsonItemGroups);
         List<ItemGroup> newItemGroup = [];
         foreach (var item in ItemGroups)
         {
-            newItemGroup.Add(new ItemGroup{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
-        } 
+            newItemGroup.Add(new ItemGroup { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
+        }
         context.ItemGroups.AddRange(newItemGroup);
 
-        string jsonItemTypes= File.ReadAllText("data/item_types.json");                                           
-        List<ItemType> ItemTypes = JsonSerializer.Deserialize<List<ItemType>>(jsonItemTypes);    
+        string jsonItemTypes = File.ReadAllText("data/item_types.json");
+        List<ItemType> ItemTypes = JsonSerializer.Deserialize<List<ItemType>>(jsonItemTypes);
         List<ItemType> newItemType = [];
         foreach (var item in ItemTypes)
         {
-            newItemType.Add(new ItemType{id = 0, name = item.name , description = item.description , created_at = item.created_at , updated_at = item.updated_at});
-        } 
-        context.ItemTypes.AddRange(newItemType);  
+            newItemType.Add(new ItemType { id = 0, name = item.name, description = item.description, created_at = item.created_at, updated_at = item.updated_at });
+        }
+        context.ItemTypes.AddRange(newItemType);
 
 
         string jsonSuppliers = File.ReadAllText("data/suppliers.json");
@@ -169,7 +169,7 @@ using (var scope = app.Services.CreateScope())
                 total_surcharge = item.total_surcharge,
                 items = new List<OrderItem>(item.items)  // Ensure items list is copied correctly
             });
-            
+
         }
         context.Orders.AddRange(newOrders.Take(6858)); //success
 
