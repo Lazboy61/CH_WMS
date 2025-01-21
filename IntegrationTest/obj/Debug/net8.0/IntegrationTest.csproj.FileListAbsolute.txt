@@ -838,3 +838,4 @@
 /Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
 /Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
 /Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/Microsoft.Extensions.ObjectPool.dll
+/Users/hacakir/Documents/Process en Tools/IntegrationTest/obj/Debug/net8.0/IntegrationTest.sourcelink.json
