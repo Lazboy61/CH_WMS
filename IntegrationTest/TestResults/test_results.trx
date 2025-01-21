@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="6d740b2a-d63d-4819-b740-509cee7564ba" name="@MacBook-Air-van-Hasan 2025-01-21 15:56:49" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-01-21T15:56:49.5442950+01:00" queuing="2025-01-21T15:56:49.5442950+01:00" start="2025-01-21T15:56:48.4446760+01:00" finish="2025-01-21T15:56:49.5464420+01:00" />
+  <TestSettings name="default" id="1564021f-f565-4c34-be4c-de71cb8e9fcc">
+    <Deployment runDeploymentRoot="_MacBook-Air-van-Hasan_2025-01-21_15_56_49" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="8558e652-b2c0-43d5-8e0b-d8d31a98d96e" testId="79f41329-2829-5750-11a3-0733c6ef80c0" testName="OrderControllerIntegrationTests.UpdateOrder_UpdatesOrderDetails" computerName="MacBook-Air-van-Hasan" duration="00:00:00.2466247" startTime="2025-01-21T15:56:48.6764880+01:00" endTime="2025-01-21T15:56:48.9298010+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8558e652-b2c0-43d5-8e0b-d8d31a98d96e">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : Response status code does not indicate success: 400 (Bad Request).</Message>
+          <StackTrace>   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at OrderControllerIntegrationTests.UpdateOrder_UpdatesOrderDetails() in /Users/hacakir/Documents/Process en Tools/IntegrationTest/OrderTest.cs:line 126
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="45b16110-4383-4a28-b840-b43ad8206520" testId="4b641df4-d44e-563f-ba16-5f8dcd62e004" testName="OrderControllerIntegrationTests.DeleteOrder_RemovesOrder" computerName="MacBook-Air-van-Hasan" duration="00:00:00.0040622" startTime="2025-01-21T15:56:48.9343200+01:00" endTime="2025-01-21T15:56:48.9343920+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45b16110-4383-4a28-b840-b43ad8206520">
+      <Output>
+        <ErrorInfo>
+          <Message>System.Net.Http.HttpRequestException : Response status code does not indicate success: 400 (Bad Request).</Message>
+          <StackTrace>   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at OrderControllerIntegrationTests.DeleteOrder_RemovesOrder() in /Users/hacakir/Documents/Process en Tools/IntegrationTest/OrderTest.cs:line 209
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="07611f0c-26cc-4f20-b08c-199a6a14ca2c" testId="58c61b29-f236-a96c-885c-d95076e8b3b2" testName="OrderControllerIntegrationTests.GetOrderById_ReturnsOrderDetails_AfterCreation" computerName="MacBook-Air-van-Hasan" duration="00:00:00.5601445" startTime="2025-01-21T15:56:48.9347680+01:00" endTime="2025-01-21T15:56:49.4947450+01:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="07611f0c-26cc-4f20-b08c-199a6a14ca2c" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="OrderControllerIntegrationTests.GetOrderById_ReturnsOrderDetails_AfterCreation" storage="/users/hacakir/documents/process en tools/integrationtest/bin/debug/net8.0/net8.0/integrationtest.dll" id="58c61b29-f236-a96c-885c-d95076e8b3b2">
+      <Execution id="07611f0c-26cc-4f20-b08c-199a6a14ca2c" />
+      <TestMethod codeBase="/Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/IntegrationTest.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="OrderControllerIntegrationTests" name="GetOrderById_ReturnsOrderDetails_AfterCreation" />
+    </UnitTest>
+    <UnitTest name="OrderControllerIntegrationTests.UpdateOrder_UpdatesOrderDetails" storage="/users/hacakir/documents/process en tools/integrationtest/bin/debug/net8.0/net8.0/integrationtest.dll" id="79f41329-2829-5750-11a3-0733c6ef80c0">
+      <Execution id="8558e652-b2c0-43d5-8e0b-d8d31a98d96e" />
+      <TestMethod codeBase="/Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/IntegrationTest.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="OrderControllerIntegrationTests" name="UpdateOrder_UpdatesOrderDetails" />
+    </UnitTest>
+    <UnitTest name="OrderControllerIntegrationTests.DeleteOrder_RemovesOrder" storage="/users/hacakir/documents/process en tools/integrationtest/bin/debug/net8.0/net8.0/integrationtest.dll" id="4b641df4-d44e-563f-ba16-5f8dcd62e004">
+      <Execution id="45b16110-4383-4a28-b840-b43ad8206520" />
+      <TestMethod codeBase="/Users/hacakir/Documents/Process en Tools/IntegrationTest/bin/Debug/net8.0/net8.0/IntegrationTest.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="OrderControllerIntegrationTests" name="DeleteOrder_RemovesOrder" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="79f41329-2829-5750-11a3-0733c6ef80c0" executionId="8558e652-b2c0-43d5-8e0b-d8d31a98d96e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b641df4-d44e-563f-ba16-5f8dcd62e004" executionId="45b16110-4383-4a28-b840-b43ad8206520" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="58c61b29-f236-a96c-885c-d95076e8b3b2" executionId="07611f0c-26cc-4f20-b08c-199a6a14ca2c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="3" executed="3" passed="1" failed="2" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.0.0+e341b939fe (64-bit .NET 8.0.8)
+[xUnit.net 00:00:00.03]   Discovering: IntegrationTest
+[xUnit.net 00:00:00.04]   Discovered:  IntegrationTest
+[xUnit.net 00:00:00.05]   Starting:    IntegrationTest
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+[xUnit.net 00:00:00.31]       System.Net.Http.HttpRequestException : Response status code does not indicate success: 400 (Bad Request).
+[xUnit.net 00:00:00.31]       Stack Trace:
+[xUnit.net 00:00:00.31]            at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+[xUnit.net 00:00:00.31]         /Users/hacakir/Documents/Process en Tools/IntegrationTest/OrderTest.cs(126,0): at OrderControllerIntegrationTests.UpdateOrder_UpdatesOrderDetails()
+[xUnit.net 00:00:00.31]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:00.31]       System.Net.Http.HttpRequestException : Response status code does not indicate success: 400 (Bad Request).
+[xUnit.net 00:00:00.31]       Stack Trace:
+[xUnit.net 00:00:00.31]            at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+[xUnit.net 00:00:00.31]         /Users/hacakir/Documents/Process en Tools/IntegrationTest/OrderTest.cs(209,0): at OrderControllerIntegrationTests.DeleteOrder_RemovesOrder()
+[xUnit.net 00:00:00.31]         --- End of stack trace from previous location ---
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?', @p2='?', @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?', @p7='?', @p8='?' (DbType = DateTime), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?', @p12='?' (DbType = Int32), @p13='?' (DbType = Decimal), @p14='?' (DbType = Decimal), @p15='?' (DbType = Decimal), @p16='?' (DbType = Decimal), @p17='?', @p18='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Orders" (bill_to, created_at, notes, order_date, order_status, picking_note, reference, reference_extra, request_date, ship_to, shipment_id, shipping_notes, source_id, total_amount, total_discount, total_surcharge, total_tax, updated_at, warehouse_id)
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18)
+      RETURNING id;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p19='?' (DbType = Int32), @p20='?' (DbType = Int32), @p21='?'], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "OrderItems" ("OrderId", amount, order_item_id)
+      VALUES (@p19, @p20, @p21)
+      RETURNING id;
+Create Response: {"source_id":0,"order_date":"2025-01-21T14:56:48.935047Z","request_date":"2025-01-22T14:56:48.935048Z","reference":"string","reference_extra":"string","order_status":"string","notes":"string","shipping_notes":"string","picking_note":"string","warehouse_id":0,"ship_to":0,"bill_to":0,"shipment_id":0,"total_amount":0.0,"total_discount":0.0,"total_tax":0.0,"total_surcharge":0.0,"items":[{"id":174217,"item_id":"string","amount":0,"orderId":13360}],"id":13360,"created_at":"2025-01-21 15:56:48","updated_at":"2025-01-21 15:56:48"}
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT o1.id, o1.bill_to, o1.created_at, o1.notes, o1.order_date, o1.order_status, o1.picking_note, o1.reference, o1.reference_extra, o1.request_date, o1.ship_to, o1.shipment_id, o1.shipping_notes, o1.source_id, o1.total_amount, o1.total_discount, o1.total_surcharge, o1.total_tax, o1.updated_at, o1.warehouse_id, o0.id, o0."OrderId", o0.amount, o0.order_item_id
+      FROM (
+          SELECT o.id, o.bill_to, o.created_at, o.notes, o.order_date, o.order_status, o.picking_note, o.reference, o.reference_extra, o.request_date, o.ship_to, o.shipment_id, o.shipping_notes, o.source_id, o.total_amount, o.total_discount, o.total_surcharge, o.total_tax, o.updated_at, o.warehouse_id
+          FROM "Orders" AS o
+          WHERE o.id = @__id_0
+          LIMIT 1
+      ) AS o1
+      LEFT JOIN "OrderItems" AS o0 ON o1.id = o0."OrderId"
+      ORDER BY o1.id
+[xUnit.net 00:00:00.88]   Finished:    IntegrationTest
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="MacBook-Air-van-Hasan" outcome="Error" timestamp="2025-01-21T15:56:48.9311000+01:00">
+        <Text>[xUnit.net 00:00:00.31]     OrderControllerIntegrationTests.UpdateOrder_UpdatesOrderDetails [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="MacBook-Air-van-Hasan" outcome="Error" timestamp="2025-01-21T15:56:48.9345210+01:00">
+        <Text>[xUnit.net 00:00:00.31]     OrderControllerIntegrationTests.DeleteOrder_RemovesOrder [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

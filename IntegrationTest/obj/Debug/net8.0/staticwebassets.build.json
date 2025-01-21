@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "lUfe6Cw478Xrq4MV9Uhav4e2r8HZnDz+803UgKTx7z0=",
+  "Source": "IntegrationTest",
+  "BasePath": "_content/IntegrationTest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/Users/hacakir/Documents/Process en Tools/CH_WMS/CargoHubTeam2.csproj",
+      "Version": 2,
+      "Source": "CargoHubTeam2",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
