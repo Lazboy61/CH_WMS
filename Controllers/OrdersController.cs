@@ -13,6 +13,26 @@ public class OrdersController : ControllerBase
         _orderService = orderService;
     }
 
+    [HttpPost]
+    public async Task<IActionResult> CreateOrder([FromBody] Order order)
+    {
+        if (order == null)
+        {
+            return BadRequest("Order cannot be null.");
+        }
+
+        try
+        {
+            await _orderService.AddOrder(order);
+            return CreatedAtAction(nameof(GetOrderById), new { id = order.id }, order);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred: {ex.Message}");
+        }
+    }
+
+
     [HttpGet]
     public async Task<IActionResult> GetAllOrders()
     {
