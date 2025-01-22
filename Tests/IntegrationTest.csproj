@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CargoHubTeam2.csproj" />
+    <ProjectReference Include="..\CH_WMS\CargoHubTeam2.csproj" />
   </ItemGroup>
 
   <Target Name="CopyCastleCore" AfterTargets="Build">
