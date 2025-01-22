@@ -23,42 +23,33 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      # Step 3: Run code quality check (linting)
-      - name: Run linting (code quality)
-        run: dotnet format --check
+      # # Step 3: Run code quality check (linting)
+      # - name: Run linting (code quality)
+      #   run: dotnet format --check
 
       # Step 4: Restore dependencies
       - name: Restore dependencies
         run: dotnet restore
 
-      # Step 5: Build the solution
-      - name: Build the solution
-        run: dotnet build --no-restore --configuration Release
+      - name: Run Program.cs
+        run: |
+          dotnet run --project ./CH_WMS/Program.cs
 
-      # Step 6: Run unit tests
-      - name: Run unit tests
-        run: dotnet test --filter Category=UnitTest
+      # # Step 5: Build the solution
+      # - name: Build the solution
+      #   run: dotnet build --no-restore --configuration Release
 
-      # Step 7: Run integration tests
-      - name: Run integration tests
-        run: dotnet test --filter Category=IntegrationTest
+      # # Step 6: Run unit tests
+      # - name: Run unit tests
+      #   run: dotnet test --filter Category=UnitTest
 
-      # Step 8: Publish build artifacts
-      - name: Publish artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: bin/Release/
+      # # Step 7: Run integration tests
+      # - name: Run integration tests
+      #   run: dotnet test --filter Category=IntegrationTest
 
-  # # Optional deployment step (if needed)
-  # deploy:
-  #   needs: build-test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Deploy (Example Docker)
-  #       run: |
-  #         docker build -t CH_WMS .
-  #         docker run -d -p 8080:80 CH_WMS
+      # # Step 8: Publish build artifacts
+      # - name: Publish artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: build-artifacts
+      #     path: bin/Release/

@@ -4,6 +4,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoHubTeam2", "CargoHubTeam2.csproj", "{93974C66-F71B-4325-A0EA-D0360371179C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest", "..\Tests\IntegrationTest.csproj", "{A76B5448-4FF9-498B-9172-CFBFC7694E9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,5 +31,9 @@ Global
 		{02AF569F-CC72-4731-BDE5-B6B2B97DBA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02AF569F-CC72-4731-BDE5-B6B2B97DBA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02AF569F-CC72-4731-BDE5-B6B2B97DBA05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76B5448-4FF9-498B-9172-CFBFC7694E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76B5448-4FF9-498B-9172-CFBFC7694E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76B5448-4FF9-498B-9172-CFBFC7694E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76B5448-4FF9-498B-9172-CFBFC7694E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
