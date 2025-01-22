@@ -14,7 +14,7 @@ services:
       - mynetwork
     logging:
       driver: none
-
+ 
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -31,11 +31,11 @@ services:
       - mynetwork
     logging:
       driver: none
-
+ 
 volumes:
   pgdata:
-  pgAdminData: 
-
+  pgAdminData:
+ 
 networks:
   mynetwork:
     driver: bridge

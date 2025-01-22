@@ -31,11 +31,14 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 
 
 
-/////////////////////////////////////////////////////
 builder.Services.AddDbContext<ModelContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
+{
+    var connectionString = builder.Configuration.GetConnectionString("DBConnection");
+    Console.WriteLine($"Using connection string: {connectionString}");
+    options.UseNpgsql(connectionString)
+           .EnableSensitiveDataLogging()
+           .LogTo(Console.WriteLine); // Add logging
+});
 
 // postgres DB
 
